@@ -23,7 +23,25 @@ clean:
 	rm -f libLcd.a *.o *.elf
 
 lcddemo.elf: lcddemo.o libLcd.a 
-	$(CC) $(CFLAGS) $(LDFLAGS) $^ -o $@ -lTimer 
+	$(CC) $(CFLAGS) $(LDFLAGS) $^ -o $@ -lTimer
+
+lcdx.elf: lcdx.o libLcd.a 
+	$(CC) $(CFLAGS) $(LDFLAGS) $^ -o $@ -lTimer
+
+lcdy.elf: lcdy.o libLcd.a
+	$(CC) $(CFLAGS) $(LDFLAGS) $^ -o $@ -lTimer
+
+lcdz.elf: lcdz.o libLcd.a
+	$(CC) $(CFLAGS) $(LDFLAGS) $^ -o $@ -lTimer
 
 load: lcddemo.elf
+	msp430loader.sh $^
+
+loadx: lcdx.elf
+	msp430loader.sh $^
+
+loady: lcdy.elf
+	msp430loader.sh $^
+
+loadz: lcdz.elf
 	msp430loader.sh $^
