@@ -12,20 +12,33 @@ main()
 {
   configureClocks();
   lcd_init();
-  u_char width = screenWidth, height = screenHeight;
-  u_char j;
+  u_char width = screenWidth, height = screenHeight, x_offset = 50, y_offset = 25;
+  u_char j,i,k, width_start, width_end;
   clearScreen(COLOR_BLUE);
 
   // Draws a diagnol line.
+  /*
   for (j = 0; j <= 30; j++){
-    //drawPixel(j, j, COLOR_BLACK); // Draw line top-left to bottom-right
-    //drawPixel(30 - j, j, COLOR_BLACK); // Draw line top-right to bottom-left
-    //drawPixel(j, 15, COLOR_BLACK); // Draw line left to right
-    //drawPixel(15, j, COLOR_BLACK); // Draw line top to bottom
+    width_start = 0;
+    width_end = j;
+    for (i = 0; i <= width_end; i++){
+      if (j >= 15) {
+	drawPixel(x_offset + i, y_offset + j, COLOR_BLACK);
+	drawPixel(x_offset - i, y_offset + j, COLOR_BLACK); 
+      }
+    }
+    }*/
 
-    drawPixel(30, j, COLOR_BLACK); // TRIANGLE
-    drawPixel(j, 30, COLOR_BLACK);
-    drawPixel(30 - j, j, COLOR_BLACK);
+  for (j = 0; j <= 15; j++) {
+    width_start = 15 - j;
+    width_end = 15;
+    for (i = width_start; i <= width_end; i++){
+      drawPixel(20 + i, 20 + j, COLOR_BLACK);
+      drawPixel(20 + i, 20 - j, COLOR_BLACK);
+      drawPixel(20 - i, 20 + j, COLOR_BLACK);
+      drawPixel(20 - i, 20 - j, COLOR_BLACK);
+      
+    }
   }
 
   //  drawString5x7(20,20, "hello", COLOR_GREEN, COLOR_RED);
